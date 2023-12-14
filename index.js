@@ -6,8 +6,14 @@ function fillButton(index, text) {
   document.getElementById(index).innerHTML = text;
 }
 // pre-made a function. You can use this function to present an alert to say someone wins
+let isGameOver = false;
 function winningAlert(winner) {
+  // checkWinner();
+
   if (confirm(`Horraaay, ${winner} wins!`)) {
+    isGameOver = true;
+    // restartGame();
+
     // The code here will be exectued if you press on OK button that will pop on the window
   }
 }
@@ -27,15 +33,18 @@ function winningAlert(winner) {
 let cells = ["", "", "", "", "", "", "", "", ""];
 let player = "O";
 function clickButton(index) {
+  if (isGameOver) return;
   console.log(`Button number ${index} is clicked`);
   if (player == "X" && document.getElementById(index).innerHTML == "") {
     player = "O";
     fillButton(index, player);
     cells[index - 1] = "O";
+    checkWinner();
   } else if (player == "O" && document.getElementById(index).innerHTML == "") {
     player = "X";
     fillButton(index, player);
     cells[index - 1] = "X";
+    checkWinner();
   }
 }
 
@@ -44,16 +53,117 @@ function clickButton(index) {
  */
 
 function checkWinner() {
-  if (
-    (cells[0] == "O" && cells[1] == "O" && cells[2] == "O") ||
-    (cells[0] == "X" && cells[1] == "X" && cells[2] == "X")
+  console.log(cells);
+  if (cells[0] === cells[1] && cells[1] === cells[2] && cells[1] === "X") {
+    player = "X";
+    winningAlert(player);
+
+    // restartGame();
+  } else if (
+    cells[0] === cells[1] &&
+    cells[1] === cells[2] &&
+    cells[2] === "O"
   ) {
+    player = "O";
     winningAlert(player);
   } else if (
-    (cells[0] == "O" && cells[4] == "O" && cells[8] == "O") ||
-    (cells[0] == "X" && cells[4] == "X" && cells[8] == "X")
+    cells[0] === cells[4] &&
+    cells[4] === cells[8] &&
+    cells[8] === "O"
   ) {
+    player = "O";
     winningAlert(player);
+  } else if (
+    cells[0] === cells[4] &&
+    cells[4] === cells[8] &&
+    cells[8] === "X"
+  ) {
+    player = "X";
+    winningAlert(player);
+  } else if (
+    cells[0] === cells[3] &&
+    cells[3] === cells[6] &&
+    cells[6] === "X"
+  ) {
+    player = "X";
+    winningAlert(player);
+  } else if (
+    cells[0] === cells[3] &&
+    cells[3] === cells[6] &&
+    cells[6] === "O"
+  ) {
+    player = "O";
+    winningAlert(player);
+  } else if (
+    cells[2] === cells[4] &&
+    cells[4] === cells[6] &&
+    cells[6] === "O"
+  ) {
+    player = "O";
+    winningAlert(player);
+  } else if (
+    cells[2] === cells[4] &&
+    cells[4] === cells[6] &&
+    cells[6] === "X"
+  ) {
+    player = "X";
+    winningAlert(player);
+  } else if (
+    cells[2] === cells[5] &&
+    cells[5] === cells[8] &&
+    cells[8] === "X"
+  ) {
+    player = "X";
+    winningAlert(player);
+  } else if (
+    cells[2] === cells[5] &&
+    cells[5] === cells[8] &&
+    cells[8] === "O"
+  ) {
+    player = "O";
+    winningAlert(player);
+  } else if (
+    cells[6] === cells[7] &&
+    cells[7] === cells[8] &&
+    cells[8] === "O"
+  ) {
+    player = "O";
+    winningAlert(player);
+  } else if (
+    cells[6] === cells[7] &&
+    cells[7] === cells[8] &&
+    cells[8] === "X"
+  ) {
+    player = "X";
+    winningAlert(player);
+  } else if (
+    cells[3] === cells[4] &&
+    cells[4] === cells[5] &&
+    cells[5] === "O"
+  ) {
+    player = "O";
+    winningAlert(player);
+  } else if (
+    cells[3] === cells[4] &&
+    cells[4] === cells[5] &&
+    cells[5] === "X"
+  ) {
+    player = "X";
+    winningAlert(player);
+    // } else {
+    //   draw();
+    // }
   }
+  // function restartGame() {
+  //   for (let i = 0; i < 9, i + 1; ) {
+  //     document.getElementById(i).innerHTML == "";
+  //   }
+  // }
+  // function draw() {
+  //   for (let i = 0; i < 9, i + 1; ) {
+  //     if (document.getElementById(i).innerHTML !== "") {
+  //       alert("Draw");
+  //       isGameOver = true;
+  //     }
+  //   }
 }
-// function restartGame
